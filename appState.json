@@ -1,0 +1,106 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313": {
+        "id": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
+        "parent": null,
+        "name": "indunilSQStging",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "34cd28d2-0713-4f14-b3e6-be846aa63241"
+        ],
+        "isRemovable": false,
+        "filePath": "indunilSQStging"
+      },
+      "34cd28d2-0713-4f14-b3e6-be846aa63241": {
+        "id": "34cd28d2-0713-4f14-b3e6-be846aa63241",
+        "parent": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "indunilSQStging/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n\n\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "sqsHiru1T",
+            "config": {
+              "BatchSize": "10"
+            }
+          }
+        ]
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
+    "openFiles": [
+      "34cd28d2-0713-4f14-b3e6-be846aa63241"
+    ],
+    "currentFileId": "34cd28d2-0713-4f14-b3e6-be846aa63241",
+    "resources": {
+      "sqsHiru1T": {
+        "name": "sqsHiru1T",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "Hiru1T",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/Hiru1T",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "120",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:Hiru1T"
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "indunilSQStging",
+    "projectDescription": "SQStging",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1562321786473
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "indunilSQStging",
+      "url": "https://github.com/Indunil1992/indunilSQStging"
+    }
+  }
+}
