@@ -8,12 +8,12 @@ exports.handler = function (event, context, callback) {
 
 
     sqs.receiveMessage({
-        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/s1`,
-        AttributeNames: ['MessageGroupId'],
-        MaxNumberOfMessages: '',
-        VisibilityTimeout: '',
-        WaitTimeSeconds: '',
-        MessageAttributeNames: ['']
+        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,
+        AttributeNames: ['SequenceNumber'],
+        MaxNumberOfMessages: '10',
+        VisibilityTimeout: '10',
+        WaitTimeSeconds: '30',
+        MessageAttributeNames: ['jaya', 'sri']
     }).promise()
         .then(receivedMsgData => {
             if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {
