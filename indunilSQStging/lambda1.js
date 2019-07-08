@@ -5,14 +5,14 @@ const sqs = new SL_AWS.SQS(AWS);
 exports.handler = function (event, context, callback) {
 
 
-    
+
 
     sqs.receiveMessage({
         QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,
         AttributeNames: ['All'],
         MaxNumberOfMessages: '100',
         VisibilityTimeout: '30',
-        WaitTimeSeconds: '0'
+        WaitTimeSeconds: '010'
     }).promise()
         .then(receivedMsgData => {
             if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {
@@ -23,15 +23,15 @@ exports.handler = function (event, context, callback) {
                 });
             } else {
                 // No messages to process
-                 console.log("success" + {data});
-            callback(null, "Successfully executed to enduser data" + { data });
+                console.log("success" + { data });
+                callback(null, "Successfully executed to enduser data" + { data });
 
             }
         })
         .catch(err => {
             // error handling goes here
 
-            console.log("error " + {err});
+            console.log("error " + { err });
             callback(null, "Successfully executed to enduser catch" + { err });
         });
 
