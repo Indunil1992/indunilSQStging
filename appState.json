@@ -22,17 +22,17 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n\n\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    \n    callback(null, {\"message\": \"Successfully with ex triggr executed\"});\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
-          "timeout": 60,
+          "timeout": 30,
           "memory": 128,
           "layers": []
         },
         "triggers": [
           {
-            "resourceName": "sqsHiru1T",
+            "resourceName": "sqsanomalyDetectionQueue",
             "config": {
               "BatchSize": "10"
             }
@@ -67,6 +67,69 @@
           "receiveMessageWaitTime": "0",
           "queueARN": "arn:aws:sqs:us-east-1:318300609668:Hiru1T"
         }
+      },
+      "sqsKTestSQS": {
+        "name": "sqsKTestSQS",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "KTestSQS",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/KTestSQS",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "30",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:KTestSQS"
+        }
+      },
+      "sqsanomalyDetectionQueue": {
+        "name": "sqsanomalyDetectionQueue",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "anomalyDetectionQueue",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/anomalyDetectionQueue",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "30",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:anomalyDetectionQueue"
+        }
+      },
+      "sqsudithTestQueue": {
+        "name": "sqsudithTestQueue",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "udith-test-queue",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/udith-test-queue",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "30",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:udith-test-queue"
+        }
       }
     },
     "customTemplate": {
@@ -94,7 +157,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562321786473
+    "lastSave": 1562562624824
   },
   "VCS_STATE": {
     "provider": "GitHub",
