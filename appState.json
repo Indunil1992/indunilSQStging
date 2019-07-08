@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    \n    callback(null, {\"message\": \"Successfully with ex triggr executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    \n    callback(null, {\"message\": \"Successfully executed with nw triggr\"});\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -32,12 +32,20 @@
         },
         "triggers": [
           {
-            "resourceName": "sqsanomalyDetectionQueue",
+            "resourceName": "sqsQueue1",
             "config": {
               "BatchSize": "10"
             }
           }
-        ]
+        ],
+        "testCases": {
+          "722c8938-8417-4846-a518-dbbb11c7c19d": {
+            "id": "722c8938-8417-4846-a518-dbbb11c7c19d",
+            "name": "Unnamed event",
+            "functionId": "34cd28d2-0713-4f14-b3e6-be846aa63241",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
       }
     },
     "deletedFiles": [],
@@ -130,6 +138,32 @@
           "receiveMessageWaitTime": "0",
           "queueARN": "arn:aws:sqs:us-east-1:318300609668:udith-test-queue"
         }
+      },
+      "sqsQueue1": {
+        "name": "sqsQueue1",
+        "type": "SQS",
+        "config": {
+          "mode": 0,
+          "existing": false,
+          "name": "Queue1",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/Queue1",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": 0,
+          "deliveryDelayUnit": "seconds",
+          "useRedrivePolicy": false,
+          "useSSE": false,
+          "kmsCustomerMasterKey": "default",
+          "accountId": "318300609668",
+          "dataKeyReusePeriod": 5,
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": 30,
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": 4,
+          "messageRetentionPeriodUnit": "days",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": 0,
+          "deadLetterQueueName": ""
+        }
       }
     },
     "customTemplate": {
@@ -157,7 +191,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562562624824
+    "lastSave": 1562564095489
   },
   "VCS_STATE": {
     "provider": "GitHub",

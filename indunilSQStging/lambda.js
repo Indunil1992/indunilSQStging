@@ -1,5 +1,5 @@
 exports.handler = function(event, context, callback) {
     
     
-    callback(null, {"message": "Successfully with ex triggr executed"});
+    callback(null, {"message": "Successfully executed with nw triggr"});
 }
