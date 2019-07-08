@@ -57,7 +57,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n\n    sqs.sendMessage({\n        MessageBody: 'testtt',\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/KTestSQS`,\n        DelaySeconds: '0',\n        MessageAttributes: {\n            \"x\": {\n                \"DataType\": \"String\",\n                \"StringValue\": \"a\"\n            },\n            \"sa\": {\n                \"DataType\": \"Number\",\n                \"StringValue\": \"1\"\n            }\n        }\n    }, function (data) {\n        console.log(\"No messages\");\n        console.log(data);\n        // your logic (logging etc) to handle successful message delivery, should be here\n    }, function (error) {\n        // your logic (logging etc) to handle failures, should be here\n        console.log(\"error\");\n        console.log(data);\n    });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n\n    sqs.sendMessage({\n        MessageBody: 'testtt',\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/sample`,\n        DelaySeconds: '0',\n        MessageAttributes: {\n            \"x\": {\n                \"DataType\": \"String\",\n                \"StringValue\": \"a\"\n            },\n            \"sa\": {\n                \"DataType\": \"Number\",\n                \"StringValue\": \"1\"\n            }\n        }\n    }, function (data) {\n        console.log(\"No messages\");\n        console.log(data);\n        // your logic (logging etc) to handle successful message delivery, should be here\n    }, function (error) {\n        // your logic (logging etc) to handle failures, should be here\n        console.log(\"error\");\n        console.log(data);\n    });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -191,6 +191,32 @@
           "receiveMessageWaitTime": "0",
           "queueARN": "arn:aws:sqs:us-east-1:318300609668:KTestSQS"
         }
+      },
+      "sqssample": {
+        "name": "sqssample",
+        "type": "SQS",
+        "config": {
+          "mode": 0,
+          "existing": false,
+          "name": "sample",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/sample",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": 0,
+          "deliveryDelayUnit": "seconds",
+          "useRedrivePolicy": false,
+          "useSSE": false,
+          "kmsCustomerMasterKey": "default",
+          "accountId": "318300609668",
+          "dataKeyReusePeriod": 5,
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": 30,
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": 4,
+          "messageRetentionPeriodUnit": "days",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": 0,
+          "deadLetterQueueName": ""
+        }
       }
     },
     "customTemplate": {
@@ -233,7 +259,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562578655348
+    "lastSave": 1562578762999
   },
   "VCS_STATE": {
     "provider": "GitHub",

@@ -8,7 +8,7 @@ exports.handler = function (event, context, callback) {
 
     sqs.sendMessage({
         MessageBody: 'testtt',
-        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/KTestSQS`,
+        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/sample`,
         DelaySeconds: '0',
         MessageAttributes: {
             "x": {
