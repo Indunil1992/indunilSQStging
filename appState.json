@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    \n    callback(null, {\"message\": \"Successfully executed with nw ww\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    \n    callback(null, {\"message\": \"Successfully executed with nw s1\"});\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -32,7 +32,7 @@
         },
         "triggers": [
           {
-            "resourceName": "sqsQueue2",
+            "resourceName": "sqss1",
             "config": {
               "BatchSize": "10"
             }
@@ -144,7 +144,7 @@
         "type": "SQS",
         "config": {
           "mode": 0,
-          "existing": true,
+          "existing": false,
           "name": "Queue1",
           "url": "https://sqs.us-east-1.amazonaws.com/318300609668/Queue1",
           "selectedRegion": "us-east-1",
@@ -171,7 +171,7 @@
         "type": "SQS",
         "config": {
           "mode": 0,
-          "existing": false,
+          "existing": true,
           "name": "Queue2",
           "url": "https://sqs.us-east-1.amazonaws.com/318300609668/Queue2",
           "selectedRegion": "us-east-1",
@@ -189,7 +189,35 @@
           "messageRetentionPeriodUnit": "days",
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": 0,
-          "deadLetterQueueName": ""
+          "deadLetterQueueName": "",
+          "createdByApp": true
+        }
+      },
+      "sqss1": {
+        "name": "sqss1",
+        "type": "SQS",
+        "config": {
+          "mode": 0,
+          "existing": false,
+          "name": "s1",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/s1",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": 0,
+          "deliveryDelayUnit": "minutes",
+          "useRedrivePolicy": true,
+          "useSSE": true,
+          "kmsCustomerMasterKey": "default",
+          "accountId": "318300609668",
+          "dataKeyReusePeriod": 5,
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": 30,
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "3",
+          "messageRetentionPeriodUnit": "days",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "3",
+          "deadLetterQueueName": "4",
+          "maximumReceives": "9"
         }
       }
     },
@@ -218,7 +246,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562565204289
+    "lastSave": 1562571014451
   },
   "VCS_STATE": {
     "provider": "GitHub",
