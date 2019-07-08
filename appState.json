@@ -8,7 +8,8 @@
         "type": "DIRECTORY",
         "isDirectory": true,
         "children": [
-          "d1880016-f42a-4e8f-b89d-36470bfef47c"
+          "d1880016-f42a-4e8f-b89d-36470bfef47c",
+          "307a8d1c-b28a-46fd-9eaf-5d04c83d1de3"
         ],
         "isRemovable": false,
         "filePath": "indunilSQStging"
@@ -22,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda1.js",
-        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['SequenceNumber'],\n        MaxNumberOfMessages: '10',\n        VisibilityTimeout: '10',\n        WaitTimeSeconds: '30',\n        MessageAttributeNames: ['jaya', 'sri']\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                console.log(\"success\" + { data });\n                callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + { err });\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['All'],\n        MaxNumberOfMessages: '1',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '0'\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                    console.log(\"Success\");\n                 console.log( data );\n                });\n            } else {\n                 console.log(\"No messages\");\n                 console.log( data );\n                // No messages to process\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n            console.log(\"error\");\n            console.log( data );\n        });\n\n        \n\n\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['SequenceNumber'],\n        MaxNumberOfMessages: '10',\n        VisibilityTimeout: '10',\n        WaitTimeSeconds: '30',\n        MessageAttributeNames: ['jaya', 'sri']\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                console.log(\"success\" + { data });\n                callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + { err });\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -46,14 +47,43 @@
             "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
           }
         }
+      },
+      "307a8d1c-b28a-46fd-9eaf-5d04c83d1de3": {
+        "id": "307a8d1c-b28a-46fd-9eaf-5d04c83d1de3",
+        "parent": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "indunilSQStging/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n    sqs.sendMessage({\n        MessageBody: 'testtt',\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        DelaySeconds: '0',\n        MessageAttributes: {}\n    }, function (data) {\n         console.log(\"No messages\");\n                 console.log( data );\n        // your logic (logging etc) to handle successful message delivery, should be here\n    }, function (error) {\n        // your logic (logging etc) to handle failures, should be here\n        console.log(\"error\");\n            console.log( data );\n    });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "s3indunil1",
+            "config": {
+              "type": "s3:ObjectCreated:*",
+              "keyPrefix": "",
+              "keySuffix": ""
+            }
+          }
+        ]
       }
     },
     "deletedFiles": [],
     "rootNode": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
     "openFiles": [
-      "d1880016-f42a-4e8f-b89d-36470bfef47c"
+      "d1880016-f42a-4e8f-b89d-36470bfef47c",
+      "307a8d1c-b28a-46fd-9eaf-5d04c83d1de3"
     ],
-    "currentFileId": "d1880016-f42a-4e8f-b89d-36470bfef47c",
+    "currentFileId": "307a8d1c-b28a-46fd-9eaf-5d04c83d1de3",
     "resources": {
       "sqss1": {
         "name": "sqss1",
@@ -101,6 +131,17 @@
           "receiveMessageWaitTime": "0",
           "queueARN": "arn:aws:sqs:us-east-1:318300609668:Hiru1T"
         }
+      },
+      "s3indunil1": {
+        "name": "s3indunil1",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "indunil1"
+          }
+        }
       }
     },
     "customTemplate": {
@@ -143,7 +184,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562576441689
+    "lastSave": 1562578272306
   },
   "VCS_STATE": {
     "provider": "GitHub",
