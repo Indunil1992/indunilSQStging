@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda1.js",
-        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['MessageGroupId'],\n        MaxNumberOfMessages: '100',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '010',\n        MessageAttributeNames: ['raj', 'ind']\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                console.log(\"success\" + { data });\n                callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + { err });\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/s1`,\n        AttributeNames: ['MessageGroupId'],\n        MaxNumberOfMessages: '',\n        VisibilityTimeout: '',\n        WaitTimeSeconds: '',\n        MessageAttributeNames: ['']\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                console.log(\"success\" + { data });\n                callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + { err });\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -143,7 +143,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562576010114
+    "lastSave": 1562576221373
   },
   "VCS_STATE": {
     "provider": "GitHub",
