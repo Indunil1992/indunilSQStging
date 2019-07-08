@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda1.js",
-        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['All'],\n        MaxNumberOfMessages: '100',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '0'\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                 console.log(\"success\" + {data});\n            callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + {err});\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n\n\n    \n\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/Hiru1T`,\n        AttributeNames: ['All'],\n        MaxNumberOfMessages: '100',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '0'\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n                 console.log(\"success\" + {data});\n            callback(null, \"Successfully executed to enduser data\" + { data });\n\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n\n            console.log(\"error \" + {err});\n            callback(null, \"Successfully executed to enduser catch\" + { err });\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -30,12 +30,25 @@
           "memory": 128,
           "layers": []
         },
-        "triggers": []
+        "triggers": [
+          {
+            "resourceName": "sqss1",
+            "config": {
+              "BatchSize": "10"
+            }
+          }
+        ],
+        "testCases": {
+          "a147d5aa-d3de-4b88-9efc-90a92d2639e2": {
+            "id": "a147d5aa-d3de-4b88-9efc-90a92d2639e2",
+            "name": "Unnamed event",
+            "functionId": "d1880016-f42a-4e8f-b89d-36470bfef47c",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
       }
     },
-    "deletedFiles": [
-      "indunilSQStging/lambda.js"
-    ],
+    "deletedFiles": [],
     "rootNode": "a9e0c35f-e1a7-4aef-8b85-7d1f4fff2313",
     "openFiles": [
       "d1880016-f42a-4e8f-b89d-36470bfef47c"
@@ -65,8 +78,7 @@
           "messageRetentionPeriodUnit": "days",
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": "3",
-          "deadLetterQueueName": "4",
-          "maximumReceives": "9"
+          "deadLetterQueueName": "4"
         }
       },
       "sqsHiru1T": {
@@ -131,7 +143,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562575050366
+    "lastSave": 1562575833691
   },
   "VCS_STATE": {
     "provider": "GitHub",
