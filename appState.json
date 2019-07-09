@@ -57,7 +57,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilSQStging/lambda.js",
-        "code": "\nexports.handler = function (event, context, callback) {\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/indunil`,\n        AttributeNames: ['All'],\n        MaxNumberOfMessages: '100',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '0'\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -66,18 +66,6 @@
           "layers": []
         },
         "triggers": [
-          {
-            "resourceName": "s3indunil1",
-            "config": {
-              "type": "s3:ObjectCreated:*",
-              "keyPrefix": "",
-              "keySuffix": ""
-            }
-          },
-          {
-            "resourceName": "apigusEast1myapindunilindunilqatstany",
-            "config": {}
-          },
           {
             "resourceName": "sqsindunil",
             "config": {
@@ -200,8 +188,7 @@
           "messageRetentionPeriodUnit": "days",
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": 0,
-          "deadLetterQueueName": "",
-          "contentBasedDeduplication": false
+          "deadLetterQueueName": ""
         }
       }
     },
@@ -245,7 +232,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1562654793898
+    "lastSave": 1562654982980
   },
   "VCS_STATE": {
     "provider": "GitHub",
